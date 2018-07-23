@@ -13,8 +13,7 @@ function getData(url, callbackFunc) {
 function successAjax(xhttp) {
   // itt a json content, benne a data változóban
   var userDatas = JSON.parse(xhttp.responseText)[2].data;
-  eventOnButton();
-  makeElement('div', 'charInfo', '.characterSide');
+  initFunction();
   deleteTheDead(userDatas);
   sortByName(userDatas);
   fillContainer(userDatas);
@@ -36,9 +35,11 @@ getData('json/characters.json', successAjax);
 // Live servert használd mindig!!!!!
 /* IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ! */
 
-
-function eventOnButton() {
+function initFunction() {
   document.querySelector('#search-button').onclick = charSearch;
+  makeElement('div', 'charInfo', '.characterSide');
+  makeElement('img', 'starkLogo', '.characterSide');
+  document.querySelector('starkLogo').src = '/assets/site/';
 }
 
 
@@ -97,13 +98,14 @@ function getToCharacterSide() {
 
 function characterDot(char) {
   var charDot = document.createElement('div');
+  var charP = document.createElement('p');
   charDot.char = char;
   charDot.className = 'charDot';
   charDot.ondblclick = getToCharacterSide;
-  var message = `${char.name}`;
+  charP.innerHTML = `${char.name}`;
   var imgChild = makeImg(char);
-  charDot.innerHTML = message;
   charDot.appendChild(imgChild);
+  charDot.appendChild(charP);
   return charDot;
 }
 
@@ -149,5 +151,6 @@ function findSigil(house) {
   var sigil = document.createElement('img');
   sigil.src = `/assets/houses/${house}.png`;
   sigil.alt = house;
+  sigil.className = 'sigil';
   return sigil;
 }

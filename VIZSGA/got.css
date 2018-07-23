@@ -1,10 +1,37 @@
+@font-face {
+    font-family: FontFont;
+    src: url(/fonts/ChelaOne-Regular.ttf);
+}
+
 body{
   margin:0;
   font-size: 16px;
+  font-family: FontFont;
+}
+
+.charDot img {
+  width: 70%;
+  height: 70%;
+  display: block;
+  margin: auto;
+}
+
+.characterSide img:first-child {
+  width: 80%;
+  height: 60%;
+}
+
+sigil {
+  margin-left: 80%;
+}
+
+p {
+  text-align: center;
 }
 
 div{
   position:relative;
+  display: inline-block;
   box-sizing:border-box;
   padding: 20px;
 }
@@ -27,8 +54,9 @@ div{
 
 .characterDots{
   width: 100%;
-  background:  #0b88c5;
-  overflow: auto
+  background-image: url(/assets/site/mapblue.jpg);
+  background-repeat: space;
+  overflow: auto;
 }
 
 .characterSide{
@@ -41,12 +69,16 @@ div{
   position: relative;
 }
 
+.charDot {
+  width: 12.5%;
+}
+
 #search-text,
 #search-button {
   line-height: 16px;
   padding: 5px 10px;
   border-radius: 5px;
-  border: 1px solid #fae01f;
+  border: 1px solid #041a3d;
 }
 
 #search-text {
@@ -54,7 +86,7 @@ div{
 }
 
 #search-button{
-  background: #fae01f;
+  background: #6695e2;
 }
 
 #search-button:hover{
