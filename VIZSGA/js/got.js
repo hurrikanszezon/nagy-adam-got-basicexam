@@ -12,6 +12,7 @@ function getData(url, callbackFunc) {
 function successAjax(xhttp) {
   // itt a json content, benne a data változóban
   var userDatas = JSON.parse(xhttp.responseText)[2].data;
+  makeElement('div', 'charInfo', '.characterSide');
   deleteTheDead(userDatas);
   sortByName(userDatas);
   fillContainer(userDatas);
@@ -66,11 +67,32 @@ function fillContainer(array) {
   }
 }
 
+
+function makeInfo(object) {
+  var carrier = document.createElement('div');
+  carrier.className = 'carrierDiv';
+  var img = document.createElement('img');
+  //  var sigil = document.createElement('img');
+  // sigil.src =
+  img.src = object.picture;
+  img.alt = object.name;
+  carrier.appendChild(img);
+  carrier.innerHTML += `<br>${object.name}<br>`;
+  carrier.innerHTML += object.bio;
+  return carrier;
+}
+
+
+function getToCharacterSide() {
+  document.querySelector('.charInfo').innerHTML = makeInfo(this.char).innerHTML;
+}
+
+
 function characterDot(char) {
   var charDot = document.createElement('div');
   charDot.char = char;
   charDot.className = 'charDot';
-  // charDot.ondblclick =;
+  charDot.ondblclick = getToCharacterSide;
   var message = `${char.name}`;
   var imgChild = makeImg(char);
   charDot.innerHTML = message;
@@ -83,4 +105,10 @@ function makeImg(char) {
   img.src = `${char.portrait}`;
   img.alt = `${char.name}`;
   return img;
+}
+
+function makeElement(element, className, destination) {
+  var newElement = document.createElement(element);
+  newElement.className = className;
+  document.querySelector(destination).appendChild(newElement);
 }
