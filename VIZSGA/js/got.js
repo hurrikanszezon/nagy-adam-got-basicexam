@@ -79,13 +79,13 @@ function makeInfo(object) {
   var carrier = document.createElement('div');
   carrier.className = 'carrierDiv';
   var img = document.createElement('img');
-  //  var sigil = document.createElement('img');
-  // sigil.src =
+  var sigil =  findSigil(object.house);
   img.src = object.picture;
   img.alt = object.name;
   carrier.appendChild(img);
-  carrier.innerHTML += `<br>${object.name}<br>`;
-  carrier.innerHTML += object.bio;
+  carrier.innerHTML += `<br>${object.name}`;
+  carrier.appendChild(sigil);
+  carrier.innerHTML += `<br>${object.bio}`;
   return carrier;
 }
 
@@ -142,4 +142,12 @@ function charSearch() {
       target.innerHTML = 'Character not found!';
     }
   }
+}
+
+
+function findSigil(house) {
+  var sigil = document.createElement('img');
+  sigil.src = `/assets/houses/${house}.png`;
+  sigil.alt = house;
+  return sigil;
 }
