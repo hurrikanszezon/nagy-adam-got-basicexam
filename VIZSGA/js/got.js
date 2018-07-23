@@ -13,7 +13,8 @@ function successAjax(xhttp) {
   // itt a json content, benne a data változóban
   var userDatas = JSON.parse(xhttp.responseText)[2].data;
   deleteTheDead(userDatas);
-  console.log(sortByName(userDatas));
+  sortByName(userDatas);
+  fillContainer(userDatas);
 
   /*
       Pár sorral lejebb majd ezt olvashatod:
@@ -55,4 +56,31 @@ function sortByName(array) {
       }
     }
   } return array;
+}
+
+function fillContainer(array) {
+  var container = document.querySelector('.characterDots');
+  for (var k = 0; k < array.length; k++) {
+    var character = characterDot(array[k]);
+    container.appendChild(character);
+  }
+}
+
+function characterDot(char) {
+  var charDot = document.createElement('div');
+  charDot.char = char;
+  charDot.className = 'charDot';
+  // charDot.ondblclick =;
+  var message = `${char.name}`;
+  var imgChild = makeImg(char);
+  charDot.innerHTML = message;
+  charDot.appendChild(imgChild);
+  return charDot;
+}
+
+function makeImg(char) {
+  var img = document.createElement('img');
+  img.src = `${char.portrait}`;
+  img.alt = `${char.name}`;
+  return img;
 }
