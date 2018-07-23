@@ -35,13 +35,6 @@ getData('json/characters.json', successAjax);
 // Live servert használd mindig!!!!!
 /* IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ! */
 
-function initFunction() {
-  document.querySelector('#search-button').onclick = charSearch;
-  makeElement('div', 'charInfo', '.characterSide');
-  makeElement('img', 'starkLogo', '.characterSide');
-  document.querySelector('starkLogo').src = '/assets/site/';
-}
-
 
 function deleteTheDead(array) {
   for (var k = 0; k < array.length; k++) {
@@ -153,4 +146,11 @@ function findSigil(house) {
   sigil.alt = house;
   sigil.className = 'sigil';
   return sigil;
+}
+
+
+function initFunction() {
+  document.querySelector('#search-button').onclick = charSearch;
+  makeElement('div', 'charInfo', '.characterSide');
+  makeElement('div', 'starkLogo', '.characterSide');
 }
