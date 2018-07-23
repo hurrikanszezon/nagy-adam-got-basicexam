@@ -9,9 +9,11 @@ function getData(url, callbackFunc) {
   xhttp.send();
 }
 
+
 function successAjax(xhttp) {
   // itt a json content, benne a data változóban
   var userDatas = JSON.parse(xhttp.responseText)[2].data;
+  eventOnButton();
   makeElement('div', 'charInfo', '.characterSide');
   deleteTheDead(userDatas);
   sortByName(userDatas);
@@ -33,6 +35,11 @@ getData('json/characters.json', successAjax);
 
 // Live servert használd mindig!!!!!
 /* IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ! */
+
+
+function eventOnButton() {
+  document.querySelector('#search-button').onclick = charSearch;
+}
 
 
 function deleteTheDead(array) {
@@ -111,4 +118,28 @@ function makeElement(element, className, destination) {
   var newElement = document.createElement(element);
   newElement.className = className;
   document.querySelector(destination).appendChild(newElement);
+}
+
+
+function getNameFromField() {
+  var srcInput = document.querySelector('#search-text').value.toLowerCase();
+  return srcInput;
+}
+
+
+function charSearch() {
+  var target = document.querySelector('.charInfo');
+  var input = getNameFromField();
+  var child;
+  var found = false;
+  var list = document.querySelectorAll('.charDot');
+  for ( var k = 0; !found && k < list.length; k++) {
+    if ( list[k].char.name.toLowerCase() === input.toLowerCase()) {
+      found = true;
+      child = makeInfo(list[k].char);
+      target.innerHTML = child.innerHTML;
+    } else {
+      target.innerHTML = 'Character not found!';
+    }
+  }
 }
