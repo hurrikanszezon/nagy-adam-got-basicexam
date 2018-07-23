@@ -22,7 +22,7 @@ body{
 }
 
 .sigil {
-  margin-left: 60%;
+  float: right;
 }
 
 .starkLogo {
