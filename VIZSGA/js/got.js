@@ -79,7 +79,7 @@ function makeInfo(object) {
   carrier.appendChild(img);
   carrier.innerHTML += `<br>${object.name}`;
   carrier.appendChild(sigil);
-  carrier.innerHTML += `<br>${object.bio}`;
+  carrier.innerHTML += `<br><br>${object.bio}`;
   return carrier;
 }
 
